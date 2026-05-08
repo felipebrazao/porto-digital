@@ -1,0 +1,36 @@
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
+
+const papelLabel = {
+  produtor: 'Produtor',
+  comprador: 'Comprador / Freteiro',
+  admin: 'Administrador',
+};
+
+export default function Navbar() {
+  const { usuario, logout } = useAuth();
+  const navigate = useNavigate();
+
+  function handleLogout() {
+    logout();
+    navigate('/login');
+  }
+
+  return (
+    <nav className="navbar">
+      <div className="navbar-brand">
+        <span className="logo-icon">🌿</span>
+        Porto Digital Amazônico
+      </div>
+      {usuario && (
+        <div className="navbar-user">
+          <span>{usuario.nome}</span>
+          <span className="papel-badge">{papelLabel[usuario.papel]}</span>
+          <button className="btn-logout" onClick={handleLogout}>
+            Sair
+          </button>
+        </div>
+      )}
+    </nav>
+  );
+}
