@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
 const papelLabel = {
@@ -18,10 +18,9 @@ export default function Navbar() {
 
   return (
     <nav className="navbar">
-      <div className="navbar-brand">
-        <span className="logo-icon">🌿</span>
-        Porto Digital Amazônico
-      </div>
+      <Link to="/home" className="navbar-brand" style={{ textDecoration: 'none', color: 'inherit' }}>
+        <img src="/logo.png" alt="Porto Digital Amazônico" style={{ height: '72px', display: 'block', filter: 'none' }} />
+      </Link>
       {usuario && (
         <div className="navbar-user">
           <span>{usuario.nome}</span>
