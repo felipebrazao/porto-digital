@@ -1,58 +1,62 @@
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import {
+  MdHome, MdAssignment, MdInventory, MdDirectionsBoat,
+  MdHistory, MdBarChart, MdShoppingCart, MdMap, MdAdminPanelSettings,
+} from 'react-icons/md';
 
 const menuProdutor = [
-  { section: 'Início', items: [{ to: '/dashboard', icon: '🏠', label: 'Painel' }] },
+  { section: 'Início', items: [{ to: '/dashboard', icon: <MdHome />, label: 'Painel' }] },
   {
     section: 'Produção',
     items: [
-      { to: '/producao/registrar', icon: '📋', label: 'Registrar Colheita' },
-      { to: '/producao/anunciar', icon: '📦', label: 'Anunciar Mercadoria' },
+      { to: '/producao/registrar', icon: <MdAssignment />, label: 'Registrar Colheita' },
+      { to: '/producao/anunciar', icon: <MdInventory />, label: 'Anunciar Mercadoria' },
     ],
   },
   {
     section: 'Logística',
-    items: [{ to: '/logistica/rotas', icon: '🚢', label: 'Consultar Fretes' }],
+    items: [{ to: '/logistica/rotas', icon: <MdDirectionsBoat />, label: 'Consultar Fretes' }],
   },
   {
     section: 'Histórico',
     items: [
-      { to: '/historico', icon: '📜', label: 'Minhas Transações' },
-      { to: '/indicadores', icon: '📊', label: 'Indicadores' },
+      { to: '/historico', icon: <MdHistory />, label: 'Minhas Transações' },
+      { to: '/indicadores', icon: <MdBarChart />, label: 'Indicadores' },
     ],
   },
 ];
 
 const menuComprador = [
-  { section: 'Início', items: [{ to: '/dashboard', icon: '🏠', label: 'Painel' }] },
+  { section: 'Início', items: [{ to: '/dashboard', icon: <MdHome />, label: 'Painel' }] },
   {
     section: 'Mercado',
-    items: [{ to: '/catalogo', icon: '🛒', label: 'Catálogo' }],
+    items: [{ to: '/catalogo', icon: <MdShoppingCart />, label: 'Catálogo' }],
   },
   {
     section: 'Logística',
     items: [
-      { to: '/logistica/nova-rota', icon: '🗺️', label: 'Cadastrar Rota' },
-      { to: '/logistica/rotas', icon: '🚢', label: 'Rotas Disponíveis' },
+      { to: '/logistica/nova-rota', icon: <MdMap />, label: 'Cadastrar Rota' },
+      { to: '/logistica/rotas', icon: <MdDirectionsBoat />, label: 'Rotas Disponíveis' },
     ],
   },
   {
     section: 'Histórico',
     items: [
-      { to: '/historico', icon: '📜', label: 'Minhas Transações' },
-      { to: '/indicadores', icon: '📊', label: 'Indicadores' },
+      { to: '/historico', icon: <MdHistory />, label: 'Minhas Transações' },
+      { to: '/indicadores', icon: <MdBarChart />, label: 'Indicadores' },
     ],
   },
 ];
 
 const menuAdmin = [
-  { section: 'Início', items: [{ to: '/dashboard', icon: '🏠', label: 'Painel' }] },
+  { section: 'Início', items: [{ to: '/dashboard', icon: <MdHome />, label: 'Painel' }] },
   {
     section: 'Administração',
     items: [
-      { to: '/admin', icon: '⚙️', label: 'Painel Admin' },
-      { to: '/historico', icon: '📜', label: 'Transações' },
-      { to: '/indicadores', icon: '📊', label: 'Indicadores' },
+      { to: '/admin', icon: <MdAdminPanelSettings />, label: 'Painel Admin' },
+      { to: '/historico', icon: <MdHistory />, label: 'Transações' },
+      { to: '/indicadores', icon: <MdBarChart />, label: 'Indicadores' },
     ],
   },
 ];

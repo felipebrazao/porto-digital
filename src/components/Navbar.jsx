@@ -13,13 +13,13 @@ export default function Navbar() {
 
   function handleLogout() {
     logout();
-    navigate('/login');
+    navigate('/');
   }
 
   return (
     <nav className="navbar">
       <Link to="/home" className="navbar-brand" style={{ textDecoration: 'none', color: 'inherit' }}>
-        <img src="/logo.png" alt="Porto Digital Amazônico" style={{ height: '72px', display: 'block', filter: 'none' }} />
+        <img src="/logo.png" alt="Porto Digital Amazônico" style={{ height: '72px', display: 'block', filter: 'brightness(0) invert(1)' }} />
       </Link>
       {usuario && (
         <div className="navbar-user">

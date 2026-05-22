@@ -1,10 +1,9 @@
-﻿import { Routes, Route, Navigate } from 'react-router-dom'
+﻿import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { useAuth } from './context/AuthContext'
 import Navbar from './components/Navbar'
 import Sidebar from './components/Sidebar'
 
 import Home from './pages/home/Home'
-import Login from './pages/auth/Login'
 import RegisterProducer from './pages/auth/RegisterProducer'
 import RegisterBuyer from './pages/auth/RegisterBuyer'
 import Dashboard from './pages/dashboard/Dashboard'
@@ -24,7 +23,7 @@ import AdminPanel from './pages/admin/AdminPanel'
 
 function ProtectedLayout({ children }) {
   const { usuario } = useAuth()
-  if (!usuario) return <Navigate to="/login" replace />
+  if (!usuario) return <Navigate to="/" replace />
   return (
     <div className="app-shell">
       <Sidebar />
@@ -36,13 +35,13 @@ function ProtectedLayout({ children }) {
 }
 
 function App() {
+  const location = useLocation()
   return (
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-      <Navbar />
+      {location.pathname !== '/' && <Navbar />}
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
         <Routes>
-      <Route path="/home" element={<Home />} />
-          <Route path="/login" element={<Login />} />
+      <Route path="/" element={<Home />} />
           <Route path="/cadastro/produtor" element={<RegisterProducer />} />
           <Route path="/cadastro/comprador" element={<RegisterBuyer />} />
 
@@ -61,7 +60,7 @@ function App() {
           <Route path="/indicadores" element={<ProtectedLayout><Indicators /></ProtectedLayout>} />
           <Route path="/admin" element={<ProtectedLayout><AdminPanel /></ProtectedLayout>} />
 
-          <Route path="*" element={<Navigate to="/login" replace />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </div>
     </div>

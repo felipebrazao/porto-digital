@@ -1,8 +1,12 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
+import { useApp } from '../../context/AppContext';
 import { portos } from '../../data/mockData';
 
 export default function RegisterRoute() {
+  const { usuario } = useAuth();
+  const { adicionarRota } = useApp();
   const navigate = useNavigate();
   const [form, setForm] = useState({
     origem: '', destino: '', paradas: '', tempoEstimado: '',
@@ -17,6 +21,19 @@ export default function RegisterRoute() {
 
   function handleSubmit(e) {
     e.preventDefault();
+    adicionarRota({
+      id: 'r' + Date.now(),
+      freteiro: usuario,
+      origem: form.origem,
+      destino: form.destino,
+      paradas: form.paradas ? form.paradas.split(',').map((s) => s.trim()) : [],
+      tempoEstimado: form.tempoEstimado,
+      frequencia: form.frequencia,
+      diasHorarios: form.diasHorarios,
+      capacidadeLivre: Number(form.capacidadeLivre),
+      precoFrete: Number(form.precoFrete),
+      disponivel: true,
+    });
     setSucesso(true);
     setTimeout(() => navigate('/logistica/rotas'), 2000);
   }

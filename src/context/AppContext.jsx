@@ -1,19 +1,14 @@
 import { useState } from 'react';
-import { mockTransacoes, mockMercadorias, mockUsers } from '../data/mockData';
-
-// Contexto de estado global da aplicação (transações, mercadorias, etc.)
-// Simula backend com useState
-
-let _transacoes = [...mockTransacoes];
-let _mercadorias = [...mockMercadorias];
-
+import { mockTransacoes, mockMercadorias, mockColheitas, mockRotas } from '../data/mockData';
 import { createContext, useContext } from 'react';
 
 const AppContext = createContext(null);
 
 export function AppProvider({ children }) {
-  const [transacoes, setTransacoes] = useState(_transacoes);
-  const [mercadorias, setMercadorias] = useState(_mercadorias);
+  const [transacoes, setTransacoes]   = useState([...mockTransacoes]);
+  const [mercadorias, setMercadorias] = useState([...mockMercadorias]);
+  const [colheitas, setColheitas]     = useState([...mockColheitas]);
+  const [rotas, setRotas]             = useState([...mockRotas]);
 
   function atualizarStatusTransacao(id, novoStatus) {
     setTransacoes((prev) =>
@@ -45,16 +40,28 @@ export function AppProvider({ children }) {
     );
   }
 
+  function adicionarColheita(colheita) {
+    setColheitas((prev) => [...prev, colheita]);
+  }
+
+  function adicionarRota(rota) {
+    setRotas((prev) => [...prev, rota]);
+  }
+
   return (
     <AppContext.Provider
       value={{
         transacoes,
         mercadorias,
+        colheitas,
+        rotas,
         atualizarStatusTransacao,
         adicionarTransacao,
         retirarMercadoria,
         adicionarMercadoria,
         avaliarTransacao,
+        adicionarColheita,
+        adicionarRota,
       }}
     >
       {children}

@@ -1,11 +1,15 @@
 import { useState } from 'react';
-import { mockRotas, portos } from '../../data/mockData';
+import { portos } from '../../data/mockData';
+import { useApp } from '../../context/AppContext';
 import RatingStars from '../../components/RatingStars';
-import StatusBadge from '../../components/StatusBadge';
+import {
+  MdDirectionsBoat, MdSearch, MdSend, MdCheckCircle,
+} from 'react-icons/md';
 
 export default function SearchFreight() {
+  const { rotas } = useApp();
   const [filtros, setFiltros] = useState({ origem: '', destino: '', capacidade: '' });
-  const [rotas, setRotas] = useState(mockRotas);
+  const [solicitado, setSolicitado] = useState(null);
 
   function handleFiltro(e) {
     const { name, value } = e.target;
@@ -19,23 +23,22 @@ export default function SearchFreight() {
     return true;
   });
 
-  function toggleDisponibilidade(id) {
-    setRotas((prev) =>
-      prev.map((r) => (r.id === id ? { ...r, disponivel: !r.disponivel } : r))
-    );
+  function handleAceitarFrete(id) {
+    setSolicitado(id);
+    setTimeout(() => setSolicitado(null), 3000);
   }
 
   return (
     <div className="page-body">
       <div className="page-header">
-        <h1>🚢 Rotas e Fretes Disponíveis</h1>
+        <h1><MdDirectionsBoat style={{ verticalAlign: 'middle', marginRight: 8 }} />Rotas e Fretes Disponíveis</h1>
         <p>UC07 — Consulte freteiros e rotas, filtre por origem, destino e capacidade</p>
       </div>
 
       {/* Filtros */}
       <div className="card mb-2">
         <div className="card-header">
-          <span className="card-title">🔍 Filtrar Rotas</span>
+          <span className="card-title"><MdSearch style={{ verticalAlign: 'middle', marginRight: 6 }} />Filtrar Rotas</span>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem' }}>
           <div className="form-group">
@@ -67,26 +70,21 @@ export default function SearchFreight() {
       ) : (
         <div className="cards-grid">
           {rotasFiltradas.map((rota) => (
-            <div key={rota.id} className="card" style={{ opacity: rota.disponivel ? 1 : 0.6 }}>
+            <div key={rota.id} className="card" style={{ display: 'flex', flexDirection: 'column' }}>
               <div className="card-header">
                 <span className="card-title">
                   {rota.origem} → {rota.destino}
                 </span>
-                <StatusBadge status={rota.disponivel ? 'disponivel' : 'esgotado'} />
               </div>
 
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', fontSize: '0.88rem' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', fontSize: '0.88rem', flex: 1 }}>
                 <div className="flex-between">
                   <span className="text-muted">Freteiro</span>
-                  <span className="font-bold">{rota.freteiro.nome}</span>
-                </div>
-                <div className="flex-between">
-                  <span className="text-muted">Embarcação</span>
-                  <span>{rota.freteiro.embarcacao?.nome}</span>
+                  <span className="font-bold">{rota.freteiro?.nome ?? '—'}</span>
                 </div>
                 <div className="flex-between">
                   <span className="text-muted">Tempo estimado</span>
-                  <span>{rota.tempoEstimado}</span>
+                  <span>{rota.tempoEstimado || '—'}</span>
                 </div>
                 <div className="flex-between">
                   <span className="text-muted">Frequência</span>
@@ -94,9 +92,9 @@ export default function SearchFreight() {
                 </div>
                 <div className="flex-between">
                   <span className="text-muted">Saídas</span>
-                  <span>{rota.diasHorarios}</span>
+                  <span>{rota.diasHorarios || '—'}</span>
                 </div>
-                {rota.paradas.length > 0 && (
+                {rota.paradas?.length > 0 && (
                   <div className="flex-between">
                     <span className="text-muted">Paradas</span>
                     <span>{rota.paradas.join(', ')}</span>
@@ -104,27 +102,32 @@ export default function SearchFreight() {
                 )}
                 <div className="flex-between">
                   <span className="text-muted">Cap. livre</span>
-                  <span className="font-bold text-verde">{rota.capacidadeLivre.toLocaleString()} kg</span>
+                  <span className="font-bold text-verde">{rota.capacidadeLivre?.toLocaleString()} kg</span>
                 </div>
                 <div className="flex-between">
                   <span className="text-muted">Preço do frete</span>
                   <span className="font-bold" style={{ color: 'var(--azul-rio)' }}>
-                    R$ {rota.precoFrete.toFixed(2).replace('.', ',')}
+                    R$ {Number(rota.precoFrete).toFixed(2).replace('.', ',')}
                   </span>
                 </div>
-                <div className="flex-between">
-                  <span className="text-muted">Reputação</span>
-                  <RatingStars nota={Math.round(rota.freteiro.reputacao)} />
-                </div>
+                {rota.freteiro?.reputacao && (
+                  <div className="flex-between">
+                    <span className="text-muted">Reputação</span>
+                    <RatingStars nota={Math.round(rota.freteiro.reputacao)} />
+                  </div>
+                )}
               </div>
 
-              <div className="mt-2 flex gap-1">
-                <button
-                  className="btn btn-sm btn-outline"
-                  onClick={() => toggleDisponibilidade(rota.id)}
-                >
-                  {rota.disponivel ? '⏸ Indisponível' : '▶ Disponível'}
-                </button>
+              <div style={{ marginTop: 'auto', paddingTop: '0.75rem' }}>
+                {solicitado === rota.id ? (
+                  <button className="btn btn-sm btn-primary w-full" disabled style={{ background: 'var(--verde-floresta)' }}>
+                    <MdCheckCircle style={{ verticalAlign: 'middle', marginRight: 6 }} />Solicitação enviada!
+                  </button>
+                ) : (
+                  <button className="btn btn-sm btn-primary w-full" onClick={() => handleAceitarFrete(rota.id)}>
+                    <MdSend style={{ verticalAlign: 'middle', marginRight: 6 }} />Aceitar Frete
+                  </button>
+                )}
               </div>
             </div>
           ))}

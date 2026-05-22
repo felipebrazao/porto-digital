@@ -25,13 +25,18 @@ export function AuthProvider({ children }) {
     return false;
   }
 
+  function loginFromApi(usuarioApi) {
+    setUsuario(usuarioApi);
+    localStorage.setItem('porto_usuario', JSON.stringify(usuarioApi));
+  }
+
   function logout() {
     setUsuario(null);
     localStorage.removeItem('porto_usuario');
   }
 
   return (
-    <AuthContext.Provider value={{ usuario, login, logout }}>
+    <AuthContext.Provider value={{ usuario, login, loginFromApi, logout }}>
       {children}
     </AuthContext.Provider>
   );

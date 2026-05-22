@@ -2,14 +2,15 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useApp } from '../../context/AppContext';
-import { mockColheitas, portos, produtos } from '../../data/mockData';
+import { portos, produtos } from '../../data/mockData';
+import { MdInventory, MdCheckCircle } from 'react-icons/md';
 
 export default function AnnounceGoods() {
   const { usuario } = useAuth();
-  const { adicionarMercadoria } = useApp();
+  const { colheitas, adicionarMercadoria } = useApp();
   const navigate = useNavigate();
 
-  const colheitasProdutor = mockColheitas.filter((c) => c.produtorId === usuario?.id);
+  const colheitasProdutor = colheitas.filter((c) => c.produtorId === usuario?.id);
   const [form, setForm] = useState({
     produto: '', quantidade: '', pesoEstimado: '', unidade: 'kg',
     precoPorUnidade: '', portoRetirada: '', validadeAnuncio: '', colheitaId: '',
@@ -45,7 +46,7 @@ export default function AnnounceGoods() {
     return (
       <div className="page-body">
         <div className="card text-center" style={{ maxWidth: 400, margin: '3rem auto' }}>
-          <div style={{ fontSize: '3rem' }}>📦</div>
+          <div style={{ fontSize: '3rem', color: 'var(--verde-floresta)' }}><MdCheckCircle size={56} /></div>
           <h2 className="text-verde mt-2">Mercadoria publicada!</h2>
           <p className="text-muted mt-1">Seu produto já está visível no catálogo.</p>
         </div>
@@ -56,7 +57,7 @@ export default function AnnounceGoods() {
   return (
     <div className="page-body">
       <div className="page-header">
-        <h1>📦 Anunciar Mercadoria</h1>
+        <h1><MdInventory style={{ verticalAlign: 'middle', marginRight: 8 }} />Anunciar Mercadoria</h1>
         <p>UC05 — Publique produtos disponíveis para venda no catálogo da plataforma</p>
       </div>
 

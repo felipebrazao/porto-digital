@@ -1,16 +1,18 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { mockColheitas } from '../../data/mockData';
+import { useApp } from '../../context/AppContext';
 import { produtos } from '../../data/mockData';
+import { MdAssignment, MdHistory, MdCheckCircle, MdWarning } from 'react-icons/md';
 
 export default function RegisterHarvest() {
   const { usuario } = useAuth();
+  const { colheitas, adicionarColheita } = useApp();
   const navigate = useNavigate();
   const [form, setForm] = useState({
     produto: '', volume: '', unidade: 'kg', dataColheita: '', observacoes: '',
   });
-  const [historico] = useState(mockColheitas.filter((c) => c.produtorId === usuario?.id));
+  const historico = colheitas.filter((c) => c.produtorId === usuario?.id);
   const [sucesso, setSucesso] = useState(false);
 
   function handleChange(e) {
@@ -20,6 +22,16 @@ export default function RegisterHarvest() {
 
   function handleSubmit(e) {
     e.preventDefault();
+    adicionarColheita({
+      id: 'c' + Date.now(),
+      produtorId: usuario.id,
+      produto: form.produto,
+      volume: Number(form.volume),
+      unidade: form.unidade,
+      dataColheita: form.dataColheita,
+      observacoes: form.observacoes,
+      historico: [],
+    });
     setSucesso(true);
     setTimeout(() => setSucesso(false), 3000);
     setForm({ produto: '', volume: '', unidade: 'kg', dataColheita: '', observacoes: '' });
@@ -28,7 +40,7 @@ export default function RegisterHarvest() {
   return (
     <div className="page-body">
       <div className="page-header">
-        <h1>📋 Registrar Colheita / Produção</h1>
+        <h1><MdAssignment style={{ verticalAlign: 'middle', marginRight: 8 }} />Registrar Colheita / Produção</h1>
         <p>UC04 — Substitui cadernos manuscritos com registro digital permanente</p>
       </div>
 
@@ -41,12 +53,12 @@ export default function RegisterHarvest() {
 
           {sucesso && (
             <div className="alert alert-success mb-2">
-              ✅ Colheita registrada com sucesso! Registro permanente criado.
+              <MdCheckCircle style={{ verticalAlign: 'middle', marginRight: 6 }} />Colheita registrada com sucesso! Registro permanente criado.
             </div>
           )}
 
           <div className="alert alert-warning mb-2" style={{ fontSize: '0.82rem' }}>
-            ⚠️ Dados não podem ser deletados — apenas corrigidos com auditoria.
+            <MdWarning style={{ verticalAlign: 'middle', marginRight: 6 }} />Dados não podem ser deletados — apenas corrigidos com auditoria.
           </div>
 
           <form onSubmit={handleSubmit}>
@@ -93,7 +105,7 @@ export default function RegisterHarvest() {
         {/* Histórico */}
         <div className="card">
           <div className="card-header">
-            <span className="card-title">📜 Histórico de Colheitas</span>
+            <span className="card-title"><MdHistory style={{ verticalAlign: 'middle', marginRight: 6 }} />Histórico de Colheitas</span>
           </div>
           {historico.length === 0 ? (
             <p className="text-muted text-center mt-2">Nenhuma colheita registrada ainda.</p>

@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useApp } from '../../context/AppContext';
-import { mockRotas, mockUsers, mockTaxas } from '../../data/mockData';
+import { mockUsers, mockTaxas } from '../../data/mockData';
 import PIXModal from '../../components/PIXModal';
 import RatingStars from '../../components/RatingStars';
 
 export default function FreightRequest() {
   const { id } = useParams();
-  const { transacoes, adicionarTransacao } = useApp();
+  const { transacoes, adicionarTransacao, rotas } = useApp();
   const navigate = useNavigate();
 
   const transacao = transacoes.find((t) => t.id === id);
@@ -45,7 +45,7 @@ export default function FreightRequest() {
       </div>
 
       <div className="cards-grid">
-        {mockRotas.filter((r) => r.disponivel).map((rota) => {
+        {rotas.filter((r) => r.disponivel).map((rota) => {
           const { valorFrete, taxa, total } = calcularFrete(rota);
           const freteiro = rota.freteiro;
           const selecionado = rotaSelecionada?.id === rota.id;

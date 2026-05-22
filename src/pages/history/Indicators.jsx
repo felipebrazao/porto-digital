@@ -1,5 +1,5 @@
 import { useApp } from '../../context/AppContext';
-import { mockColheitas, mockRotas, mockUsers } from '../../data/mockData';
+import { mockUsers } from '../../data/mockData';
 
 function BarChart({ dados, label, valorLabel }) {
   const max = Math.max(...dados.map((d) => d.valor), 1);
@@ -19,10 +19,10 @@ function BarChart({ dados, label, valorLabel }) {
 }
 
 export default function Indicators() {
-  const { transacoes, mercadorias } = useApp();
+  const { transacoes, mercadorias, colheitas, rotas } = useApp();
 
   // Volume por produto (colheitas)
-  const volumePorProduto = mockColheitas.reduce((acc, c) => {
+  const volumePorProduto = colheitas.reduce((acc, c) => {
     acc[c.produto] = (acc[c.produto] ?? 0) + c.volume;
     return acc;
   }, {});
@@ -39,7 +39,7 @@ export default function Indicators() {
   const dadosReceita = Object.entries(receitaPorMes).map(([label, valor]) => ({ label, valor }));
 
   // Rotas mais demandadas
-  const rotasDemanda = mockRotas.map((r) => ({
+  const rotasDemanda = rotas.map((r) => ({
     label: `${r.origem.replace('Porto ', '')} → ${r.destino.replace('Porto ', '')}`,
     valor: Math.floor(Math.random() * 20) + 5,
   }));
@@ -49,7 +49,7 @@ export default function Indicators() {
     .filter((u) => u.papel === 'produtor')
     .map((u) => ({
       label: u.nome.split(' ')[0] + ' ' + (u.nome.split(' ')[1] ?? ''),
-      valor: mockColheitas.filter((c) => c.produtorId === u.id).reduce((a, c) => a + c.volume, 0),
+      valor: colheitas.filter((c) => c.produtorId === u.id).reduce((a, c) => a + c.volume, 0),
     }))
     .sort((a, b) => b.valor - a.valor);
 
@@ -89,7 +89,7 @@ export default function Indicators() {
         <div className="stat-card">
           <div className="stat-icon">🚢</div>
           <div className="stat-info">
-            <h3>{mockRotas.filter((r) => r.disponivel).length}</h3>
+            <h3>{rotas.filter((r) => r.disponivel).length}</h3>
             <p>Rotas ativas</p>
           </div>
         </div>

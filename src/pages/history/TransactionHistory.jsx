@@ -4,6 +4,7 @@ import { useAuth } from '../../context/AuthContext';
 import { useApp } from '../../context/AppContext';
 import { mockUsers } from '../../data/mockData';
 import StatusBadge from '../../components/StatusBadge';
+import { MdHistory, MdStar } from 'react-icons/md';
 
 const statusLabel = {
   aguardando_retirada: 'Aguard. Retirada',
@@ -48,7 +49,7 @@ export default function TransactionHistory() {
   return (
     <div className="page-body">
       <div className="page-header">
-        <h1>📜 Histórico de Transações</h1>
+        <h1><MdHistory style={{ verticalAlign: 'middle', marginRight: 8 }} />Histórico de Transações</h1>
         <p>UC15 — Consulte todas as suas operações na plataforma</p>
       </div>
 
@@ -121,7 +122,7 @@ export default function TransactionHistory() {
                         )}
                         {t.status === 'entregue' && !t.avaliacao && (
                           <button className="btn btn-sm btn-outline" onClick={() => navigate(`/transacoes/${t.id}/avaliar`)}>
-                            ⭐ Avaliar
+                            <MdStar style={{ verticalAlign: 'middle', marginRight: 4 }} />Avaliar
                           </button>
                         )}
                       </div>
