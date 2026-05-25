@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useApp } from '../../context/AppContext';
 import { portos } from '../../data/mockData';
+import { FiMap, FiInfo } from 'react-icons/fi';
 
 export default function RegisterRoute() {
   const { usuario } = useAuth();
@@ -42,7 +43,7 @@ export default function RegisterRoute() {
     return (
       <div className="page-body">
         <div className="card text-center" style={{ maxWidth: 400, margin: '3rem auto' }}>
-          <div style={{ fontSize: '3rem' }}>🗺️</div>
+          <div style={{ fontSize: '3rem' }}><FiMap /></div>
           <h2 className="text-verde mt-2">Rota cadastrada!</h2>
           <p className="text-muted mt-1">Sua rota está visível para outros usuários.</p>
         </div>
@@ -53,7 +54,7 @@ export default function RegisterRoute() {
   return (
     <div className="page-body">
       <div className="page-header">
-        <h1>🗺️ Cadastrar Nova Rota</h1>
+        <h1><FiMap /> Cadastrar Nova Rota</h1>
         <p>UC06 — Registre as rotas fluviais que você costuma percorrer</p>
       </div>
 
@@ -114,7 +115,7 @@ export default function RegisterRoute() {
           </div>
 
           <div className="alert alert-info mt-1 mb-2" style={{ fontSize: '0.82rem' }}>
-            ℹ️ Rotas podem ser marcadas como indisponíveis sazonalmente (cheia/seca) após o cadastro.
+            <FiInfo /> Rotas podem ser marcadas como indisponíveis sazonalmente (cheia/seca) após o cadastro.
           </div>
 
           <button type="submit" className="btn btn-primary w-full">

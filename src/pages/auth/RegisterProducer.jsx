@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { portos, produtos } from '../../data/mockData';
+import { FiCheck, FiLeaf } from 'react-icons/fi';
 
 export default function RegisterProducer() {
   const navigate = useNavigate();
@@ -33,7 +34,7 @@ export default function RegisterProducer() {
     return (
       <div className="auth-page">
         <div className="auth-card text-center">
-          <div style={{ fontSize: '3rem' }}>✅</div>
+          <div style={{ fontSize: '3rem' }}><FiCheck /></div>
           <h2 style={{ color: 'var(--verde-floresta)', marginTop: '1rem' }}>Cadastro realizado!</h2>
           <p className="text-muted mt-1">Redirecionando para o login...</p>
         </div>
@@ -45,7 +46,7 @@ export default function RegisterProducer() {
     <div className="auth-page" style={{ alignItems: 'flex-start', padding: '2rem' }}>
       <div className="auth-card" style={{ maxWidth: 560 }}>
         <div className="auth-logo">
-          <span className="logo-big">🌿</span>
+          <span className="logo-big"><FiLeaf /></span>
           <h1>Cadastro de Produtor</h1>
           <p>UC01 — Cadastrar Produtor/Agricultor</p>
         </div>

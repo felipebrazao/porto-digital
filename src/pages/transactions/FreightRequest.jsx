@@ -4,6 +4,7 @@ import { useApp } from '../../context/AppContext';
 import { mockUsers, mockTaxas } from '../../data/mockData';
 import PIXModal from '../../components/PIXModal';
 import RatingStars from '../../components/RatingStars';
+import {FiAnchor, FiCheck} from 'react-icons/fi';
 
 export default function FreightRequest() {
   const { id } = useParams();
@@ -36,7 +37,7 @@ export default function FreightRequest() {
   return (
     <div className="page-body">
       <div className="page-header">
-        <h1>🚢 Solicitar Frete</h1>
+        <h1><FiAnchor /> Solicitar Frete</h1>
         <p>UC09 — Selecione um freteiro para transportar sua carga</p>
       </div>
 
@@ -71,7 +72,7 @@ export default function FreightRequest() {
                 className={`btn w-full mt-2 ${selecionado ? 'btn-primary' : 'btn-outline'}`}
                 onClick={() => setRotaSelecionada(rota)}
               >
-                {selecionado ? '✓ Selecionado' : 'Selecionar Freteiro'}
+                {selecionado ? <><FiCheck /> Selecionado</> : 'Selecionar Freteiro'}
               </button>
             </div>
           );

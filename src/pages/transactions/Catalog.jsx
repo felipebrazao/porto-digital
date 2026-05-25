@@ -5,6 +5,7 @@ import { useApp } from '../../context/AppContext';
 import { mockUsers, mockTaxas } from '../../data/mockData';
 import StatusBadge from '../../components/StatusBadge';
 import PIXModal from '../../components/PIXModal';
+import { FiShoppingCart, FiX } from 'react-icons/fi';
 
 export default function Catalog() {
   const { usuario } = useAuth();
@@ -87,7 +88,7 @@ export default function Catalog() {
   return (
     <div className="page-body">
       <div className="page-header">
-        <h1>🛒 Catálogo de Mercadorias</h1>
+        <h1><FiShoppingCart /> Catálogo de Mercadorias</h1>
         <p>UC08 — Compre produtos diretamente de produtores da região</p>
       </div>
 
@@ -164,8 +165,8 @@ export default function Catalog() {
         <div className="modal-overlay">
           <div className="modal">
             <div className="modal-header">
-              <span className="modal-title">🛒 Confirmar Compra</span>
-              <button className="modal-close" onClick={() => setModalItem(null)}>✕</button>
+              <span className="modal-title"><FiShoppingCart /> Confirmar Compra</span>
+              <button className="modal-close" onClick={() => setModalItem(null)}><FiX /></button>
             </div>
 
             <p style={{ marginBottom: '1rem' }}>

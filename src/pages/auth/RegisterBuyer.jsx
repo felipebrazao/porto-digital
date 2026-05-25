@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { FiCheck, FiAnchor } from 'react-icons/fi';
 
 export default function RegisterBuyer() {
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ export default function RegisterBuyer() {
     return (
       <div className="auth-page">
         <div className="auth-card text-center">
-          <div style={{ fontSize: '3rem' }}>✅</div>
+          <div style={{ fontSize: '3rem' }}><FiCheck /></div>
           <h2 style={{ color: 'var(--verde-floresta)', marginTop: '1rem' }}>Cadastro realizado!</h2>
           <p className="text-muted mt-1">Redirecionando para o login...</p>
         </div>
@@ -37,7 +38,7 @@ export default function RegisterBuyer() {
     <div className="auth-page" style={{ alignItems: 'flex-start', padding: '2rem' }}>
       <div className="auth-card" style={{ maxWidth: 560 }}>
         <div className="auth-logo">
-          <span className="logo-big">🚢</span>
+          <span className="logo-big"><FiAnchor /></span>
           <h1>Cadastro de Comprador / Freteiro</h1>
           <p>UC02 — Cadastrar Comprador/Freteiro</p>
         </div>
@@ -79,7 +80,7 @@ export default function RegisterBuyer() {
           {temEmbarcacao && (
             <>
               <div className="alert alert-info mb-2">
-                🚢 Dados da embarcação
+                <FiAnchor /> Dados da embarcação
               </div>
               <div className="form-row">
                 <div className="form-group">

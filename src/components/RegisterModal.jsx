@@ -5,6 +5,7 @@ import {
 } from './ui/dialog';
 import { cadastrarUsuario, loginUsuario, verificarTelefone } from '../services/usuarioService';
 import { useAuth } from '../context/AuthContext';
+import { FiSmartphone, FiCheck } from 'react-icons/fi';
 
 const papelLabel = { produtor: 'Produtor', fretista: 'Fretista', comprador: 'Comprador' };
 const papelCor   = { produtor: '#1a5c38', fretista: '#1565a8', comprador: '#8b5e3c' };
@@ -186,7 +187,7 @@ export default function RegisterModal({ open, onClose, papel }) {
       <DialogContent>
         {telaRecup === 'enviado' ? (
           <div style={{ textAlign: 'center', padding: '1.5rem 0' }}>
-            <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>📱</div>
+            <div style={{ fontSize: '3rem', marginBottom: '1rem' }}><FiSmartphone /></div>
             <DialogTitle style={{ color: cor, fontSize: '1.3rem' }}>SMS enviado!</DialogTitle>
             <p style={{ color: '#555', fontSize: '0.9rem', marginTop: '0.5rem', marginBottom: '1.5rem' }}>
               Enviamos um código de recuperação para <strong>{telefoneRecup}</strong>.<br />
@@ -231,7 +232,7 @@ export default function RegisterModal({ open, onClose, papel }) {
           </div>
         ) : sucesso ? (
           <div style={{ textAlign: 'center', padding: '1.5rem 0' }}>
-            <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>✅</div>
+            <div style={{ fontSize: '3rem', marginBottom: '1rem' }}><FiCheck /></div>
             <DialogTitle style={{ color: cor, fontSize: '1.3rem' }}>Cadastro realizado!</DialogTitle>
             <p style={{ color: '#555', fontSize: '0.9rem', marginTop: '0.5rem', marginBottom: '1.5rem' }}>
               Sua conta de <strong>{papelLabel[papel]}</strong> foi criada. Faça login para entrar.

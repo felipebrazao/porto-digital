@@ -1,5 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useApp } from '../../context/AppContext';
+import { FiPackage, FiDollarSign, FiCheck } from 'react-icons/fi';
 
 export default function ConfirmDelivery() {
   const { id } = useParams();
@@ -26,7 +27,7 @@ export default function ConfirmDelivery() {
   return (
     <div className="page-body">
       <div className="page-header">
-        <h1>📦 Confirmar Entrega no Destino</h1>
+        <h1><FiPackage /> Confirmar Entrega no Destino</h1>
         <p>UC12 — Confirme que a mercadoria chegou ao destino final</p>
       </div>
 
@@ -45,12 +46,12 @@ export default function ConfirmDelivery() {
 
         {transacao.freteiro && (
           <div className="alert alert-info mb-2" style={{ fontSize: '0.82rem' }}>
-            💰 Ao confirmar, o pagamento do frete será liberado ao freteiro.
+            <FiDollarSign /> Ao confirmar, o pagamento do frete será liberado ao freteiro.
           </div>
         )}
 
         <button className="btn btn-primary w-full" onClick={handleConfirmar}>
-          ✅ Confirmar Entrega
+          <FiCheck /> Confirmar Entrega
         </button>
         <button className="btn btn-outline w-full mt-1" onClick={() => navigate('/historico')}>
           Cancelar

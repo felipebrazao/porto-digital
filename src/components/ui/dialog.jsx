@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
+import { FiX } from 'react-icons/fi';
 
 const Dialog = DialogPrimitive.Root;
 const DialogTrigger = DialogPrimitive.Trigger;
@@ -50,7 +51,7 @@ const DialogContent = React.forwardRef(({ children, style, ...props }, ref) => (
         }}
         aria-label="Fechar"
       >
-        ✕
+        <FiX />
       </DialogPrimitive.Close>
     </DialogPrimitive.Content>
   </DialogPrimitive.Portal>

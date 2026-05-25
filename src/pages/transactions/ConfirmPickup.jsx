@@ -1,5 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useApp } from '../../context/AppContext';
+import { FiCheck, FiAlertTriangle } from 'react-icons/fi';
 
 export default function ConfirmPickup() {
   const { id } = useParams();
@@ -26,7 +27,7 @@ export default function ConfirmPickup() {
   return (
     <div className="page-body">
       <div className="page-header">
-        <h1>✅ Confirmar Retirada da Mercadoria</h1>
+        <h1><FiCheck /> Confirmar Retirada da Mercadoria</h1>
         <p>UC11 — Confirme no totem que você retirou a mercadoria do produtor</p>
       </div>
 
@@ -43,11 +44,11 @@ export default function ConfirmPickup() {
         </div>
 
         <div className="alert alert-warning mb-2" style={{ fontSize: '0.82rem' }}>
-          ⚠️ Ao confirmar, o status muda para "Em Trânsito" e o pagamento é liberado ao produtor.
+          <FiAlertTriangle /> Ao confirmar, o status muda para "Em Trânsito" e o pagamento é liberado ao produtor.
         </div>
 
         <button className="btn btn-primary w-full" onClick={handleConfirmar}>
-          ✅ Confirmar Retirada
+          <FiCheck /> Confirmar Retirada
         </button>
         <button className="btn btn-outline w-full mt-1" onClick={() => navigate('/historico')}>
           Cancelar

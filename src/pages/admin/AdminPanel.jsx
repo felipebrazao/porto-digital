@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { mockTotens, mockTaxas, mockDisputas, mockUsers, mockTransacoes } from '../../data/mockData';
 import StatusBadge from '../../components/StatusBadge';
+import { FiMonitor, FiDollarSign, FiGavel, FiSettings, FiCheck, FiPlay, FiPause, FiRefreshCw } from 'react-icons/fi';
 
 export default function AdminPanel() {
   const [aba, setAba] = useState('totens');
@@ -46,15 +47,15 @@ export default function AdminPanel() {
   }
 
   const abas = [
-    { key: 'totens', label: '🖥️ Totens Digitais' },
-    { key: 'taxas', label: '💰 Taxas' },
-    { key: 'disputas', label: '⚖️ Disputas' },
+    { key: 'totens', label: <><FiMonitor /> Totens Digitais</> },
+    { key: 'taxas', label: <><FiDollarSign /> Taxas</> },
+    { key: 'disputas', label: <><FiGavel /> Disputas</> },
   ];
 
   return (
     <div className="page-body">
       <div className="page-header">
-        <h1>⚙️ Painel de Administração</h1>
+        <h1><FiSettings /> Painel de Administração</h1>
         <p>UC17, UC18, UC19 — Gerencie totens, taxas e disputas</p>
       </div>
 
@@ -85,14 +86,14 @@ export default function AdminPanel() {
         <div>
           <div className="stat-cards mb-2">
             <div className="stat-card">
-              <div className="stat-icon">🟢</div>
+              <div className="stat-icon"><FiCheck /></div>
               <div className="stat-info">
                 <h3>{totens.filter((t) => t.status === 'online').length}</h3>
                 <p>Totens online</p>
               </div>
             </div>
             <div className="stat-card">
-              <div className="stat-icon">🔴</div>
+              <div className="stat-icon"><FiPause /></div>
               <div className="stat-info">
                 <h3>{totens.filter((t) => t.status === 'offline').length}</h3>
                 <p>Totens offline</p>
@@ -123,9 +124,9 @@ export default function AdminPanel() {
                             className={`btn btn-sm ${t.status === 'online' ? 'btn-danger' : 'btn-primary'}`}
                             onClick={() => toggleTotem(t.id)}
                           >
-                            {t.status === 'online' ? '⏹ Desativar' : '▶ Ativar'}
+                            {t.status === 'online' ? <><FiPause /> Desativar</> : <><FiPlay /> Ativar</>}
                           </button>
-                          <button className="btn btn-sm btn-outline">🔄 Reiniciar</button>
+                          <button className="btn btn-sm btn-outline"><FiRefreshCw /> Reiniciar</button>
                         </div>
                       </td>
                     </tr>
@@ -146,7 +147,7 @@ export default function AdminPanel() {
 
           {taxasSalvas && (
             <div className="alert alert-success mb-2">
-              ✅ Taxas atualizadas! Aplicadas nas próximas transações.
+              <FiCheck /> Taxas atualizadas! Aplicadas nas próximas transações.
             </div>
           )}
 
@@ -263,7 +264,7 @@ export default function AdminPanel() {
                           </div>
                         ) : (
                           <button className="btn btn-secondary" onClick={() => setDisputaSelecionada(d.id)}>
-                            ⚖️ Mediar Disputa
+                            <FiGavel /> Mediar Disputa
                           </button>
                         )}
                       </>

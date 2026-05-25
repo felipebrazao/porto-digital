@@ -4,6 +4,7 @@ import { useAuth } from '../../context/AuthContext';
 import { useApp } from '../../context/AppContext';
 import { mockUsers } from '../../data/mockData';
 import RatingStars from '../../components/RatingStars';
+import { FiStar } from 'react-icons/fi';
 
 export default function EvaluateTransaction() {
   const { id } = useParams();
@@ -59,7 +60,7 @@ export default function EvaluateTransaction() {
     return (
       <div className="page-body">
         <div className="card text-center" style={{ maxWidth: 400, margin: '3rem auto' }}>
-          <div style={{ fontSize: '3rem' }}>⭐</div>
+          <div style={{ fontSize: '3rem' }}><FiStar /></div>
           <h2 className="text-verde mt-2">Avaliação enviada!</h2>
           <p className="text-muted mt-1">Obrigado por contribuir com a reputação da comunidade.</p>
         </div>
@@ -70,7 +71,7 @@ export default function EvaluateTransaction() {
   return (
     <div className="page-body">
       <div className="page-header">
-        <h1>⭐ Avaliar Transação</h1>
+        <h1><FiStar /> Avaliar Transação</h1>
         <p>UC13 — Avalie os participantes e contribua com o sistema de reputação</p>
       </div>
 

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { FiCreditCard, FiX, FiAlertTriangle, FiCheck } from 'react-icons/fi';
 
 // Gera uma grade 7x7 aleatória preta/branca simulando QR code
 function gerarQR() {
@@ -20,10 +21,10 @@ export default function PIXModal({ valor, descricao, onConfirmar, onFechar }) {
     <div className="modal-overlay">
       <div className="modal">
         <div className="modal-header">
-          <span className="modal-title">💳 Pagamento via PIX</span>
+          <span className="modal-title"><FiCreditCard /> Pagamento via PIX</span>
           {!pago && (
             <button className="modal-close" onClick={onFechar}>
-              ✕
+              <FiX />
             </button>
           )}
         </div>
@@ -66,16 +67,16 @@ export default function PIXModal({ valor, descricao, onConfirmar, onFechar }) {
             </div>
 
             <div className="alert alert-warning mt-2">
-              ⚠️ Simulação — clique em "Confirmar Pagamento" para avançar.
+              <FiAlertTriangle /> Simulação — clique em "Confirmar Pagamento" para avançar.
             </div>
 
             <button className="btn btn-primary w-full mt-2" onClick={handleConfirmar}>
-              ✅ Confirmar Pagamento
+              <FiCheck /> Confirmar Pagamento
             </button>
           </>
         ) : (
           <div className="text-center mt-2">
-            <div style={{ fontSize: '3rem' }}>✅</div>
+            <div style={{ fontSize: '3rem' }}><FiCheck /></div>
             <p style={{ fontWeight: 700, color: 'var(--verde-floresta)', marginTop: '0.5rem' }}>
               Pagamento confirmado!
             </p>
