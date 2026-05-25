@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import {
   MdHome, MdAssignment, MdInventory, MdDirectionsBoat,
-  MdHistory, MdBarChart, MdShoppingCart, MdMap, MdAdminPanelSettings,
+  MdHistory, MdBarChart, MdShoppingCart, MdLocationOn, MdSettings,
 } from 'react-icons/md';
 
 const menuProdutor = [
@@ -36,7 +36,7 @@ const menuComprador = [
   {
     section: 'Logística',
     items: [
-      { to: '/logistica/nova-rota', icon: <MdMap />, label: 'Cadastrar Rota' },
+      { to: '/logistica/nova-rota', icon: <MdLocationOn />, label: 'Cadastrar Rota' },
       { to: '/logistica/rotas', icon: <MdDirectionsBoat />, label: 'Rotas Disponíveis' },
     ],
   },
@@ -54,7 +54,7 @@ const menuAdmin = [
   {
     section: 'Administração',
     items: [
-      { to: '/admin', icon: <MdAdminPanelSettings />, label: 'Painel Admin' },
+      { to: '/admin', icon: <MdSettings />, label: 'Painel Admin' },
       { to: '/historico', icon: <MdHistory />, label: 'Transações' },
       { to: '/indicadores', icon: <MdBarChart />, label: 'Indicadores' },
     ],

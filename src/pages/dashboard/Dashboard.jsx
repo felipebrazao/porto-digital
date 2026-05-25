@@ -6,7 +6,7 @@ import StatusBadge from '../../components/StatusBadge';
 import {
   MdAssignment, MdInventory, MdCheckCircle, MdStar, MdBolt,
   MdNotifications, MdHistory, MdShoppingCart, MdDirectionsBoat,
-  MdHourglassEmpty, MdMap, MdAdminPanelSettings, MdBarChart,
+  MdHourglassEmpty, MdLocationOn, MdSettings, MdBarChart,
 } from 'react-icons/md';
 
 const iconStyle = { verticalAlign: 'middle', marginRight: '6px' };
@@ -160,7 +160,7 @@ export default function Dashboard() {
                   <MdDirectionsBoat style={iconStyle} />Consultar Fretes
                 </button>
                 <button className="btn btn-outline w-full" onClick={() => navigate('/logistica/nova-rota')}>
-                  <MdMap style={iconStyle} />Cadastrar Rota
+                  <MdLocationOn style={iconStyle} />Cadastrar Rota
                 </button>
               </div>
             </div>
@@ -196,7 +196,7 @@ export default function Dashboard() {
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
               <button className="btn btn-primary w-full" onClick={() => navigate('/admin')}>
-                <MdAdminPanelSettings style={iconStyle} />Painel Admin
+                <MdSettings style={iconStyle} />Painel Admin
               </button>
               <button className="btn btn-outline w-full" onClick={() => navigate('/indicadores')}>
                 <MdBarChart style={iconStyle} />Indicadores

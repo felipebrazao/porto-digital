@@ -1,6 +1,6 @@
-﻿import { useState } from 'react';
-import { MdAgriculture, MdInventory, MdRoute, MdSearch, MdLocalShipping, MdGpsFixed, MdCheckCircle, MdStar, MdHistory, MdBarChart, MdAdminPanelSettings } from 'react-icons/md';
-import { GiSickle, GiSailboat } from 'react-icons/gi';
+import { useState } from 'react';
+import { MdAgriculture, MdInventory, MdRoute, MdSearch, MdLocalShipping, MdGpsFixed, MdCheckCircle, MdStar, MdHistory, MdBarChart, MdSettings } from 'react-icons/md';
+import { GiFarmer, GiSailboat } from 'react-icons/gi';
 import { FiShoppingCart } from 'react-icons/fi';
 import RegisterModal from '../../components/RegisterModal';
 
@@ -35,7 +35,7 @@ export default function Home() {
 
         <GrupoFuncionalidades
           cor="var(--verde-floresta)"
-          iconeGrupo={<GiSickle />}
+          iconeGrupo={<GiFarmer />}
           titulo="Para Produtores"
           cards={[
             {
@@ -97,7 +97,7 @@ export default function Home() {
             <FuncCard icon={<MdStar />} cor="var(--terra)" titulo="Avaliar Transações" descricao="Após cada operação, avalie produtores e fretistas com estrelas e comentários, construindo uma rede de reputação e confiança." />
             <FuncCard icon={<MdHistory />} cor="var(--cinza-texto)" titulo="Histórico de Transações" descricao="Acesse o registro completo de todas as suas operações anteriores, com detalhes de valores, datas, produtos e participantes." />
             <FuncCard icon={<MdBarChart />} cor="var(--azul-rio)" titulo="Indicadores" descricao="Visualize métricas de desempenho como volume movimentado, fretes realizados e avaliações recebidas para tomar melhores decisões." />
-            <FuncCard icon={<MdAdminPanelSettings />} cor="var(--vermelho-alerta)" titulo="Painel Administrativo" descricao="Gestores têm acesso a um painel completo para monitorar usuários, transações e o funcionamento geral da plataforma." />
+            <FuncCard icon={<MdSettings />} cor="var(--vermelho-alerta)" titulo="Painel Administrativo" descricao="Gestores têm acesso a um painel completo para monitorar usuários, transações e o funcionamento geral da plataforma." />
           </div>
         </div>
 
@@ -108,7 +108,7 @@ export default function Home() {
       </div>
 
       <div style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', flexWrap: 'wrap', padding: '0 2rem 4rem' }}>
-        <EntradaBox icon={<GiSickle />} titulo="Sou Produtor" descricao="Cadastre colheitas, anuncie mercadorias e receba pagamentos de forma segura." cor="var(--verde-floresta)" onClick={() => setModalPapel('produtor')} />
+        <EntradaBox icon={<GiFarmer />} titulo="Sou Produtor" descricao="Cadastre colheitas, anuncie mercadorias e receba pagamentos de forma segura." cor="var(--verde-floresta)" onClick={() => setModalPapel('produtor')} />
         <EntradaBox icon={<GiSailboat />} titulo="Sou Fretista" descricao="Registre suas rotas fluviais e ofereça transporte para cargas de todo o Amazonas." cor="var(--azul-rio)" onClick={() => setModalPapel('fretista')} />
         <EntradaBox icon={<FiShoppingCart />} titulo="Sou Comprador" descricao="Acesse o catálogo de produtos direto da floresta e compre com rastreabilidade." cor="var(--terra)" onClick={() => setModalPapel('comprador')} />
       </div>

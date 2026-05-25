@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { FiSmartphone, FiLeaf } from 'react-icons/fi';
+import { FiSmartphone } from 'react-icons/fi';
+import { MdEco } from 'react-icons/md';
 
 const MOCK_CODES = { '111.111.111-11': '1234', '222.222.222-22': '5678', '333.333.333-33': '9012', '000.000.000-00': '0000', '444.444.444-44': '3456' };
 
@@ -51,7 +52,7 @@ export default function Login() {
     <div className="auth-page">
       <div className="auth-card">
         <div className="auth-logo">
-          <span className="logo-big"><FiLeaf /></span>
+          <span className="logo-big"><MdEco /></span>
           <h1>Porto Digital Amazônico</h1>
           <p>Plataforma de comércio e logística fluvial</p>
         </div>

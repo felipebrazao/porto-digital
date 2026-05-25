@@ -17,8 +17,9 @@ import { Bar, Line, Doughnut } from 'react-chartjs-2';
 import {
   FiPackage, FiCheckCircle, FiMapPin, FiDollarSign,
   FiTrendingUp, FiTrendingDown, FiMinimize, FiBarChart2,
-  FiLeaf, FiAnchor, FiAward, FiStar
+  FiAnchor, FiAward, FiStar
 } from 'react-icons/fi';
+import { MdEco } from 'react-icons/md';
 import './Indicators.css';
 
 ChartJS.register(
@@ -251,7 +252,7 @@ export default function Indicators() {
           </div>
         </ChartCard>
 
-        <ChartCard title="Distribuição por Produto" icon={<FiLeaf />}>
+        <ChartCard title="Distribuição por Produto" icon={<MdEco />}>
           <div style={{ height: 280 }}>
             <Doughnut
               data={{

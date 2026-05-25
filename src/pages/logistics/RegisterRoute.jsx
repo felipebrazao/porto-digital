@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useApp } from '../../context/AppContext';
 import { portos } from '../../data/mockData';
-import { FiMap, FiInfo } from 'react-icons/fi';
+import { FiInfo } from 'react-icons/fi';
+import { MdLocationOn } from 'react-icons/md';
 
 export default function RegisterRoute() {
   const { usuario } = useAuth();
@@ -43,7 +44,7 @@ export default function RegisterRoute() {
     return (
       <div className="page-body">
         <div className="card text-center" style={{ maxWidth: 400, margin: '3rem auto' }}>
-          <div style={{ fontSize: '3rem' }}><FiMap /></div>
+          <div style={{ fontSize: '3rem' }}><MdLocationOn /></div>
           <h2 className="text-verde mt-2">Rota cadastrada!</h2>
           <p className="text-muted mt-1">Sua rota está visível para outros usuários.</p>
         </div>
@@ -54,7 +55,7 @@ export default function RegisterRoute() {
   return (
     <div className="page-body">
       <div className="page-header">
-        <h1><FiMap /> Cadastrar Nova Rota</h1>
+        <h1><MdLocationOn /> Cadastrar Nova Rota</h1>
         <p>UC06 — Registre as rotas fluviais que você costuma percorrer</p>
       </div>
 

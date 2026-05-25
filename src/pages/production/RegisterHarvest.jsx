@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useApp } from '../../context/AppContext';
 import { produtos } from '../../data/mockData';
-import { MdAssignment, MdHistory, MdCheckCircle, MdWarning } from 'react-icons/md';
+import { MdAssignmentTurnedIn, MdHistory, MdCheckCircle, MdWarningAmber } from 'react-icons/md';
 
 export default function RegisterHarvest() {
   const { usuario } = useAuth();
@@ -40,7 +40,7 @@ export default function RegisterHarvest() {
   return (
     <div className="page-body">
       <div className="page-header">
-        <h1><MdAssignment style={{ verticalAlign: 'middle', marginRight: 8 }} />Registrar Colheita / Produção</h1>
+        <h1><MdAssignmentTurnedIn style={{ verticalAlign: 'middle', marginRight: 8 }} />Registrar Colheita / Produção</h1>
         <p>UC04 — Substitui cadernos manuscritos com registro digital permanente</p>
       </div>
 
@@ -58,7 +58,7 @@ export default function RegisterHarvest() {
           )}
 
           <div className="alert alert-warning mb-2" style={{ fontSize: '0.82rem' }}>
-            <MdWarning style={{ verticalAlign: 'middle', marginRight: 6 }} />Dados não podem ser deletados — apenas corrigidos com auditoria.
+            <MdWarningAmber style={{ verticalAlign: 'middle', marginRight: 6 }} />Dados não podem ser deletados — apenas corrigidos com auditoria.
           </div>
 
           <form onSubmit={handleSubmit}>

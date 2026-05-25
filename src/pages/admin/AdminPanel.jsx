@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { mockTotens, mockTaxas, mockDisputas, mockUsers, mockTransacoes } from '../../data/mockData';
 import StatusBadge from '../../components/StatusBadge';
-import { FiMonitor, FiDollarSign, FiGavel, FiSettings, FiCheck, FiPlay, FiPause, FiRefreshCw } from 'react-icons/fi';
+import { FiDollarSign, FiSettings, FiCheck, FiPlay, FiPause, FiRefreshCw } from 'react-icons/fi';
+import { MdDesktopMac, MdGavel } from 'react-icons/md';
 
 export default function AdminPanel() {
   const [aba, setAba] = useState('totens');
@@ -47,9 +48,9 @@ export default function AdminPanel() {
   }
 
   const abas = [
-    { key: 'totens', label: <><FiMonitor /> Totens Digitais</> },
+    { key: 'totens', label: <><MdDesktopMac /> Totens Digitais</> },
     { key: 'taxas', label: <><FiDollarSign /> Taxas</> },
-    { key: 'disputas', label: <><FiGavel /> Disputas</> },
+    { key: 'disputas', label: <><MdGavel /> Disputas</> },
   ];
 
   return (
@@ -264,7 +265,7 @@ export default function AdminPanel() {
                           </div>
                         ) : (
                           <button className="btn btn-secondary" onClick={() => setDisputaSelecionada(d.id)}>
-                            <FiGavel /> Mediar Disputa
+                            <MdGavel /> Mediar Disputa
                           </button>
                         )}
                       </>
